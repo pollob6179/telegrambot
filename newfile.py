@@ -536,8 +536,8 @@ def start_bot():
         try:
             print("🚀 Bot Running...")
             bot.infinity_polling(
-                timeout=60,
-                long_polling_timeout=60,
+                timeout=20,
+                long_polling_timeout=20,
                 skip_pending=True
             )
         except Exception as e:
