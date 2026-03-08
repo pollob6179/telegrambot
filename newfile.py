@@ -187,14 +187,14 @@ def start_cmd(message):
     ensure_user(user_id)
 
     try:
-    bot.send_message(
-        user_id,
-        "🎉 Welcome aboard!\n\n📱 Enter your phone number to get started.\n\n🌍 You can also use /cap to explore available countries"
-    )
-except Exception as e:
-    print("Send message error:", e)
-    update_user_field(user_id, "stage", "number")
+        bot.send_message(
+            user_id,
+            "🎉 Welcome aboard!\n\n📱 Enter your phone number to get started.\n\n🌍 You can also use /cap to explore available countries"
+        )
+    except Exception as e:
+        print("Send message error:", e)
 
+    update_user_field(user_id, "stage", "number")
 
 @bot.message_handler(commands=['cap'])
 def cap_cmd(message):
@@ -549,5 +549,4 @@ def start_bot():
             print("🔄 Reconnecting in 5 seconds...")
             time.sleep(5)
 
-keep_alive()
 start_bot()
