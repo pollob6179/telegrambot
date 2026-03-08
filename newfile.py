@@ -186,9 +186,13 @@ def start_cmd(message):
     user_id = message.chat.id
     ensure_user(user_id)
 
-    bot.send_message(user_id,
-        "🎉 Welcome aboard!\n\n📱 Enter your phone number to get started.\n\n🌍 You can also use /cap to explore available countries")
-
+    try:
+    bot.send_message(
+        user_id,
+        "🎉 Welcome aboard!\n\n📱 Enter your phone number to get started.\n\n🌍 You can also use /cap to explore available countries"
+    )
+except Exception as e:
+    print("Send message error:", e)
     update_user_field(user_id, "stage", "number")
 
 
