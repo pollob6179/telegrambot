@@ -545,4 +545,5 @@ def start_bot():
             print("🔄 Reconnecting in 5 seconds...")
             time.sleep(5)
 
+keep_alive()
 start_bot()
