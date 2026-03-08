@@ -148,7 +148,8 @@ def get_user_field(user_id, field):
 def update_user_field(user_id, field, value):
     cursor.execute(f"UPDATE users SET {field}=? WHERE user_id=?", (value, user_id))
     conn.commit()
-    # ================= COUNTRY PRICES =================
+    
+# ================= COUNTRY PRICES =================
 COUNTRY_PRICES = {
     "+880": 0.18,
     "+91": 0.20,
@@ -526,7 +527,6 @@ def daily_backup():
 
 backup_thread = Thread(target=daily_backup)
 backup_thread.daemon = True
-backup_thread.start()
 
 
 # ================= AUTO RECONNECT RUN =================
@@ -549,4 +549,24 @@ def start_bot():
             print("🔄 Reconnecting in 5 seconds...")
             time.sleep(5)
 
+from flask import Flask
+import threading
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running"
+
+def run():
+    app.run(host="0.0.0.0", port=10000)
+
+def keep_alive():
+    t = threading.Thread(target=run)
+    t.start()
+
+# -------- Bot Start --------
+backup_thread.start()
+
+keep_alive()
 start_bot()
